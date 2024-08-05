@@ -5,18 +5,24 @@ import 'package:vocabularynoteapp/views/styles/color_manager.dart';
 
 class ArabicOrEnglishWidget extends StatelessWidget {
   const ArabicOrEnglishWidget({
-    super.key,
+    super.key, required this.colorCode, required this.isArabic,
   });
+  final int colorCode;
+  final bool isArabic;
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return  Row(
       children: [
         GetArabicOrEnglishDesign(
           arabicIsSelected: true,
+          colorCode: colorCode,
+          isArabic: isArabic,
         ),
         SizedBox(width: 5),
         GetArabicOrEnglishDesign(
           arabicIsSelected: false,
+          colorCode: colorCode,
+          isArabic: isArabic,
         ),
       ],
     );
@@ -26,9 +32,11 @@ class ArabicOrEnglishWidget extends StatelessWidget {
 class GetArabicOrEnglishDesign extends StatelessWidget {
   const GetArabicOrEnglishDesign({
     super.key,
-    required this.arabicIsSelected,
+    required this.arabicIsSelected, required this.colorCode, required this.isArabic,
   });
   final bool arabicIsSelected;
+  final int colorCode;
+  final bool isArabic;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -42,18 +50,18 @@ class GetArabicOrEnglishDesign extends StatelessWidget {
             width: 50,
             decoration: BoxDecoration(
                 border: Border.all(width: 2, color: ColorManager.white),
-                color: WriteCubit.get(context).isArabic == arabicIsSelected
+                color: isArabic == arabicIsSelected
                     ? ColorManager.white
-                    : Color(WriteCubit.get(context).colorCode),
+                    : Color(colorCode),
                 shape: BoxShape.circle),
             child: Center(
                 child: Text(
               arabicIsSelected ? "AR" : "EN",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: !(WriteCubit.get(context).isArabic == arabicIsSelected)
+                color: !(isArabic == arabicIsSelected)
                     ? ColorManager.white
-                    : Color(WriteCubit.get(context).colorCode),
+                    : Color(colorCode),
               ),
             )),
           );

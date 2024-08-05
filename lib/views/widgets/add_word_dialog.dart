@@ -42,7 +42,10 @@ class _AddWordDialogState extends State<AddWordDialog> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const ArabicOrEnglishWidget(),
+                   ArabicOrEnglishWidget(
+                    colorCode: WriteCubit.get(context).colorCode,
+                    isArabic: WriteCubit.get(context).isArabic,
+                  ),
                   const SizedBox(height: 10),
                   const ColorWidget(),
                   const SizedBox(height: 10),

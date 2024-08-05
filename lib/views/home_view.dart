@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:vocabularynoteapp/views/styles/color_manager.dart';
-import 'package:vocabularynoteapp/views/widgets/add_word_dialog.dart';
-import 'package:vocabularynoteapp/views/widgets/color_widget.dart';
+import 'package:flutter/widgets.dart';
+
+import 'package:vocabularynoteapp/views/widgets/custon_language_filter.dart';
 
 import 'widgets/custom_floating_action_button.dart';
+import 'widgets/filter_dialog_button.dart';
+import 'widgets/words_widget.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -15,10 +17,21 @@ class HomeView extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Home"),
       ),
-      body: const Column(
-        children: [
-          ColorWidget(),
-        ],
+      body: const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomLanguageFilter(),
+                FilterDialogButton(),
+              ],
+            ),
+            SizedBox(height: 10),
+            Expanded(child: WordsWidget()),
+          ],
+        ),
       ),
     );
   }

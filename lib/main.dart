@@ -25,7 +25,7 @@ class Vocabulary extends StatelessWidget {
     return MultiBlocProvider(
       
       providers: [
-        BlocProvider(create: (context) => ReadCubit()),
+        BlocProvider(create: (context) => ReadCubit()..getWords()),
         BlocProvider(create: (context) => WriteCubit()),
       ],
       child: MaterialApp(

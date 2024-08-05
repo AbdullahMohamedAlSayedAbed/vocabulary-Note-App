@@ -55,11 +55,11 @@ class WordModel {
   }
   WordModel deleteExample(
       int indexAtExample, bool isArabicExample) {
-    List<String> newSimilarWords =
-        _initializeNewSimilarWord(isArabicExample);
-    newSimilarWords.removeAt(indexAtExample);
+    List<String> newExamples =
+        _initializeNewExample(isArabicExample);
+    newExamples.removeAt(indexAtExample);
 
-    return _getAfterCheckSimilarWord(isArabicExample, newSimilarWords);
+    return _getAfterCheckExample(isArabicExample, newExamples);
   }
   WordModel decrementIndexAtDatabase() {
     return WordModel(
@@ -89,7 +89,7 @@ class WordModel {
     );
   }
   WordModel _getAfterCheckExample(
-      bool isArabicExample, List<String> example) {
+      bool isArabicExample, List<String> newExample) {
     return WordModel(
       indexAtDatabase: indexAtDatabase,
       text: text,
@@ -97,8 +97,8 @@ class WordModel {
       colorCode: colorCode,
       arabicSimilarWords:arabicSimilarWords,
       englishSimilarWords: englishSimilarWords,
-      arabicExample:isArabicExample ? example : arabicExample,
-      englishExample:!isArabicExample? example : englishExample,
+      arabicExample:isArabicExample ? newExample : arabicExample,
+      englishExample:!isArabicExample? newExample : englishExample,
     );
   }
 

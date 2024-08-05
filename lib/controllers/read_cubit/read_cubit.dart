@@ -15,7 +15,7 @@ class ReadCubit extends Cubit<ReadState> {
   final Box _box = Hive.box(HiveConstants.wordsBox);
   LanguageFilter languageFilter = LanguageFilter.allWords;
   SortedBy sortedBy = SortedBy.time;
-  SortedType sortedType = SortedType.ascending;
+  SortedType sortedType = SortedType.descending;
 
   @override
   void onChange(Change<ReadState> change) {
@@ -44,6 +44,7 @@ class ReadCubit extends Cubit<ReadState> {
       List<WordModel> wordsToReturn =
           List.from(_box.get(HiveConstants.wordsList, defaultValue: []))
               .cast<WordModel>();
+
       _removeUnwantedWords(wordsToReturn);
       _applySorting(wordsToReturn);
       emit(ReadSuccess(wordsToReturn));

@@ -43,6 +43,7 @@ class WriteCubit extends Cubit<WriteState> {
       words[indexAtDatabase] =
           words[indexAtDatabase].addSimilarWord(text, isArabic);
       box.put(HiveConstants.wordsList, words);
+      emit(WriteSuccess());
     }, "we have problems when we add Similar Word,please try again later");
   }
 
@@ -52,6 +53,7 @@ class WriteCubit extends Cubit<WriteState> {
       words[indexAtDatabase] =
           words[indexAtDatabase].addExample(text, isArabic);
       box.put(HiveConstants.wordsList, words);
+      emit(WriteSuccess());
     }, "we have problems when we add Example,please try again later");
   }
 
@@ -62,6 +64,7 @@ class WriteCubit extends Cubit<WriteState> {
       words[indexAtDatabase] = words[indexAtDatabase]
           .deleteSimilarWord(indexAtSimilarWord, isArabicSimilarWord);
       box.put(HiveConstants.wordsList, words);
+      emit(WriteSuccess());
     }, 'we have problems when we delete similar word,please try again later');
   }
 
@@ -72,6 +75,7 @@ class WriteCubit extends Cubit<WriteState> {
       words[indexAtDatabase] =
           words[indexAtDatabase].deleteExample(indexAtExample, isArabicExample);
       box.put(HiveConstants.wordsList, words);
+      emit(WriteSuccess());
     }, 'we have problems when we delete example,please try again later');
   }
 
