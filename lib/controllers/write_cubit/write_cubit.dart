@@ -19,7 +19,7 @@ class WriteCubit extends Cubit<WriteState> {
     super.onChange(change);
   }
 
-  final Box box = Hive.box<WordModel>(HiveConstants.wordsBox);
+  final Box box = Hive.box(HiveConstants.wordsBox);
   String text = '';
   bool isArabic = false;
   int colorCode = 0xff4a47a3;
@@ -29,10 +29,12 @@ class WriteCubit extends Cubit<WriteState> {
 
   void updateIsArabic(bool isArabic) {
     this.isArabic = isArabic;
+    emit(WriteInitial());
   }
 
   void updateColorCode(int colorCode) {
     this.colorCode = colorCode;
+    emit(WriteInitial());
   }
 
   void addSimilarWord(int indexAtDatabase) {
@@ -62,12 +64,13 @@ class WriteCubit extends Cubit<WriteState> {
       box.put(HiveConstants.wordsList, words);
     }, 'we have problems when we delete similar word,please try again later');
   }
+
   void deleteExample(
       int indexAtDatabase, int indexAtExample, bool isArabicExample) {
     _tryAndCatchBlock(() {
       List<WordModel> words = _getWordsFromDatabase();
-      words[indexAtDatabase] = words[indexAtDatabase]
-          .deleteExample(indexAtExample, isArabicExample);
+      words[indexAtDatabase] =
+          words[indexAtDatabase].deleteExample(indexAtExample, isArabicExample);
       box.put(HiveConstants.wordsList, words);
     }, 'we have problems when we delete example,please try again later');
   }
@@ -104,6 +107,7 @@ class WriteCubit extends Cubit<WriteState> {
     try {
       methodToExecute.call();
     } catch (error) {
+      log(error.toString());
       emit(WriteFailure(message));
     }
   }

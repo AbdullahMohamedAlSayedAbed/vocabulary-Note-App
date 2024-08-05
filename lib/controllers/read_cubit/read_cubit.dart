@@ -12,7 +12,7 @@ part 'read_state.dart';
 class ReadCubit extends Cubit<ReadState> {
   ReadCubit() : super(ReadInitial());
   static ReadCubit get(context) => BlocProvider.of<ReadCubit>(context);
-  final Box _box = Hive.box<WordModel>(HiveConstants.wordsBox);
+  final Box _box = Hive.box(HiveConstants.wordsBox);
   LanguageFilter languageFilter = LanguageFilter.allWords;
   SortedBy sortedBy = SortedBy.time;
   SortedType sortedType = SortedType.ascending;

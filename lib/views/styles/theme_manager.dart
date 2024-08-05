@@ -5,6 +5,7 @@ import 'package:vocabularynoteapp/views/styles/color_manager.dart';
 abstract class ThemeManager {
   static ThemeData getAppTheme() {
     return ThemeData(
+      useMaterial3: false,
       scaffoldBackgroundColor: ColorManager.black,
       appBarTheme: const AppBarTheme(
         backgroundColor: ColorManager.black,
